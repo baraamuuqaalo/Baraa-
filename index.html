@@ -1,94 +1,146 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muqdisho.U</title>
+  <title>Muqdisho.U - Casharo Web3</title>
+  
+  <script>
+    (function() {
+      var currentHost = window.location.hostname;
+      // Haddii qofku qoro maxaas.u isagoon haysan Web3 Browser, u weecid dhanka .limo
+      if (currentHost === "maxaas.u") {
+        window.location.replace("https://maxaas.u.limo");
+      }
+    })();
+  </script>
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #141414;
       color: white;
-    }header {
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #e50914;
-}
-
-.container {
-  padding: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.card {
-  background: #222;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  background: #333;
-}
-
-.player {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-video {
-  width: 90%;
-  max-width: 900px;
-  border-radius: 10px;
-}
-
-.close {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: red;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
+      text-align: center;
+    }
+    header {
+      padding: 30px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #e50914;
+      border-bottom: 1px solid #333;
+    }
+    .container {
+      padding: 40px 20px;
+    }
+    h2 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      background: #e50914;
+      border-color: white;
+    }
+    .player {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    video {
+      width: 90%;
+      max-width: 850px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+    }
+    .close {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: white;
+      border: none;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.2s;
+    }
+    .close:hover {
+      background: #ccc;
+    }
   </style>
 </head>
-<body><header>Muqdisho.U</header><div class="container">
-  <h2>Casharo</h2>
+<body>
+
+<header>Muqdisho.U</header>
+
+<div class="container">
+  <h2>Casharo Video ah</h2>
   <div class="grid">
-    <div class="card" onclick="playVideo()">
-      🎬 Casharka 1
+    <div class="card" onclick="playVideo('https://gateway.pinata.cloud/ipfs/bafybeie2gc75yw43y7nmwk25bbrxkzj77chmof3hrnecn5zleddttku3cq')">
+      🎬 Casharka 1aad
     </div>
-  </div>
-</div><div class="player" id="player">
-  <video controls autoplay id="videoPlayer">
-    <source src="https://gateway.pinata.cloud/ipfs/bafybeie2gc75yw43y7nmwk25bbrxkzj77chmof3hrnecn5zleddttku3cq" type="video/mp4">
+    
+    </div>
+</div>
+
+<div class="player" id="player">
+  <video controls id="videoPlayer">
+    <source src="" type="video/mp4">
+    Your browser does not support the video tag.
   </video>
-  <button class="close" onclick="closeVideo()">Close</button>
-</div><script>
-  function playVideo() {
-    document.getElementById('player').style.display = 'flex';
+  <button class="close" onclick="closeVideo()">XIR VIDEO-KA</button>
+</div>
+
+<script>
+  var player = document.getElementById('player');
+  var video = document.getElementById('videoPlayer');
+
+  function playVideo(url) {
+    video.src = url;
+    player.style.display = 'flex';
+    video.play();
   }
 
   function closeVideo() {
-    document.getElementById('player').style.display = 'none';
+    video.pause();
+    video.src = "";
+    player.style.display = 'none';
   }
-</script></body>
+
+  // Haddii qofku taabto bannaanka video-ka, ha xirmo
+  player.onclick = function(e) {
+    if (e.target == player) {
+      closeVideo();
+    }
+  }
+</script>
+
+</body>
 </html>
